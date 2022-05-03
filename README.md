@@ -3,8 +3,16 @@
 팀원 : 김나리(팀장), 서민정, 이찬영, 전준용, 정연준
 
 ---
+## 데이터 해설
+<p align="center"><img src="./images/feature_description.png" width="100%" height="100%"></p>
+
 ## 데이터 전처리
-1. binary 변수는 0/1로 모두 변경  
+1. binary 변수는 0/1로 모두 변경
+```
+data_df['gender'] = data_df['gender'].replace(['F','M'],[1, 0])
+data_df['car'] = data_df['car'].replace(['Y','N'],[1, 0])
+data_df['reality'] = data_df['reality'].replace(['Y', 'N'],[1, 0])
+```  
 2. DAYS_BIRTH 열로부터 Age와 Age 구간 열 생성  
 3. FLAG_MOBIL 변수 값이 한 개여서 삭제  
 4. 음수인 값들 양수로 바꿔주기  
