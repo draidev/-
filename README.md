@@ -8,7 +8,7 @@
 
 ## 데이터 전처리
 1. binary 변수는 0/1로 모두 변경
-```
+```python
 data_df['gender'] = data_df['gender'].replace(['F','M'],[1, 0])
 data_df['car'] = data_df['car'].replace(['Y','N'],[1, 0])
 data_df['reality'] = data_df['reality'].replace(['Y', 'N'],[1, 0])
