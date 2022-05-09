@@ -7,22 +7,38 @@
 <p align="center"><img src="./images/feature_description.png" width="100%" height="100%"></p>
 
 ## 데이터 전처리
-1. binary 변수는 0/1로 모두 변경
-```python
-data_df['gender'] = data_df['gender'].replace(['F','M'],[1, 0])
-data_df['car'] = data_df['car'].replace(['Y','N'],[1, 0])
-data_df['reality'] = data_df['reality'].replace(['Y', 'N'],[1, 0])
-```  
-2. DAYS_BIRTH 열로부터 Age와 Age 구간 열 생성  
-3. FLAG_MOBIL 변수 값이 한 개여서 삭제  
-4. 음수인 값들 양수로 바꿔주기  
-    - DAYS_EMPLOYED  
-    - egin_month  
-5. income_type 로그스케일링  
-6. occyp_type는 아래처럼 결측치 채움  
-    - 무직자는 Unemployed 처리  
-    - 나머지 결측값은 income_type, income_total, edu_type, family_type, house_type, DAYS_EMPLOYED으로 추정  
-7. 수들(이유)를 가지고 카드를 여러개 가지고 있는 고객 파악을 위한 ID 생성
+- **binary**
+    - gender
+    - car
+    - reality
+    - work_phone
+    - phone
+    - email
+    - ~~Flag_mobil : drop~~
+    - (new) dup: 여러 카드 발행 여부
+
+- **numeric → standard scaler 적용**
+    - child_num : 처리 안함 (보류)
+    - family_size : 처리 안함, 이상치 안지우고 (보류)
+    - ~~(new) adult_num : family_size - child_num(logloss 상승 by준용)~~
+    - income_total : log 변환 (체크해볼것)
+    - age : np.abs(DAYS_BIRTH) / 365
+    - DAYS_EMPLOYED : 양수는 = 0 , 음수는 → np.abs(DAYS_EMPLOYED)
+    - begin_MONTH : np.abs(begin_MONTH)
+    - (new) cards : 해당 유저가 몇개의 카드를 소지하고 있는지
+    
+- **categorical**
+    - income_type
+    - edu_type
+    - family_type
+    - house_type
+    - occyp_type 찬영) 넣었을 때와 뺐을 때 차이가 있어서 빼서 해봄.
+        - 공통 ⇒ 업무일수 0이면 unemployed
+        - 나머지 결측치 채우는 방법 (보류)
+            - 1안: 최빈값으로 채우기(처음에 다같이 생각한 방식)
+            - 2안: GBC로 추정해서 채워 넣기
+                - 독립변수 : ['Age','income_total','income_type','edu_type','house_type', 'work_phone','gender','car','reality']
+                - 종속변수: ‘occyp_type’
 
 ### occyp_type열 결측치 채우기 논의
 - occyp_type 결측치 → 8171개  
@@ -51,3 +67,9 @@ for i in data_df[data_df['occyp_type'].isnull()].index:
                 data_df['occyp_type'][i] = data_df[data_df['income_type']== income]['occyp_type'].value_counts().index[0]
 data_df['occyp_type']
 ```
+
+
+### Machine Learning
+
+
+### Deep Learning
