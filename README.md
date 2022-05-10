@@ -84,7 +84,9 @@ data_df['occyp_type']
     - 이후, 3개 카테고리 분류    
         - 1명 : 싱글  
         - 2~3명 : 핵가족  
-        - 4명 이상 : 대가족  
+        - 4명 이상 : 대가족     
+
+**최종전처리표.png**
 <p align="center"><img src="./images/최종전처리표.png" width="100%" height="100%"></p>
 
 ## 03. Machine Learning
@@ -125,7 +127,7 @@ print("평균 정확도 :", np.mean(accuracy_history))
 <p align="center"><img src="./images/CATBOOST_result.png" width="100%" height="100%"></p>
 
 **feature imoprtance**
-<p align="center"><img src="./images/feature_importance.png" width="100%" height="100%"></p>
+<p align="center"><img src="./images/feature_importance.png" width="60%" height="60%"></p>
 
 
 ## 04. Deep Learning
@@ -187,7 +189,7 @@ for train_index, test_index in str_kf.split(credit_X, credit_Y):
     # Increase fold number
     fold_no = fold_no + 1
 ```
-<p align="center"><img src="./images/DL_result.png" width="100%" height="100%"></p>
+<p align="center"><img src="./images/DL_result.png" width="80%" height="80%"></p>
 
 하이퍼파라미터 최적화를 위해 **Keras tuner** 활용
 ### 04_01. Keras tuner (BayesianOptimization)
