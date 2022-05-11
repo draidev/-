@@ -212,3 +212,8 @@ tuner = kt.Hyperband(model_builder,
                      directory = 'test_prac_dir', # Path to the working directory
                      project_name = 'Credit_hyperband')
 ```
+
+### Reference
+[NGBoost Explained (Comparison to LightGBM and XGBoost)](http://j.mp/2WzoyTl)  
+[XGBoost Tutorials » Categorical Data](https://xgboost.readthedocs.io/en/latest/tutorials/categorical.html)  
+[Difference between Log Transformation and Standardization](https://stats.stackexchange.com/questions/483187/difference-between-log-transformation-and-standardization)
